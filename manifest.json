@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Marktplaats - Verwijder verlopen favorieten",
-  "version": "1.0.0",
-  "description": "Verwijdert automatisch verlopen advertenties uit je Marktplaats favorietenlijst.",
-  "permissions": ["activeTab"],
-  "host_permissions": ["https://www.marktplaats.nl/my-account/favorites/*"],
+  "name": "Marktplaats Tweaks",
+  "version": "1.1.0",
+  "description": "Handige extra's voor Marktplaats: darkmode en het verwijderen van verlopen favorieten.",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://www.marktplaats.nl/*"],
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
@@ -19,6 +19,12 @@
     }
   },
   "content_scripts": [
+    {
+      "matches": ["https://www.marktplaats.nl/*"],
+      "js": ["darkmode.js"],
+      "css": ["darkmode.css"],
+      "run_at": "document_start"
+    },
     {
       "matches": ["https://www.marktplaats.nl/my-account/favorites/*"],
       "js": ["content.js"],

@@ -1,0 +1,15 @@
+html.mp-dark {
+  background: #fff;
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Media niet mee inverteren, zodat foto's er normaal uitzien */
+html.mp-dark img,
+html.mp-dark picture,
+html.mp-dark video,
+html.mp-dark canvas,
+html.mp-dark iframe,
+html.mp-dark svg image,
+html.mp-dark [style*="background-image"] {
+  filter: invert(1) hue-rotate(180deg);
+}

@@ -2,6 +2,14 @@ const startBtn = document.getElementById("startBtn");
 const statusEl = document.getElementById("status");
 const resultList = document.getElementById("resultList");
 
+const darkToggle = document.getElementById("darkToggle");
+chrome.storage.local.get("mpDarkMode", (res) => {
+  darkToggle.checked = !!res.mpDarkMode;
+});
+darkToggle.addEventListener("change", () => {
+  chrome.storage.local.set({ mpDarkMode: darkToggle.checked });
+});
+
 startBtn.addEventListener("click", async () => {
   resultList.innerHTML = "";
 
