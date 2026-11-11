@@ -10,6 +10,15 @@ darkToggle.addEventListener("change", () => {
   chrome.storage.local.set({ mpDarkMode: darkToggle.checked });
 });
 
+const favCount = document.getElementById("favCount");
+chrome.storage.local.get("mpFavorites", (res) => {
+  const n = res.mpFavorites ? res.mpFavorites.items.length : 0;
+  if (n) favCount.textContent = `${n} favorieten opgeslagen`;
+});
+document.getElementById("openFavBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: chrome.runtime.getURL("favorites.html") });
+});
+
 startBtn.addEventListener("click", async () => {
   resultList.innerHTML = "";
 

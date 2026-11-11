@@ -74,7 +74,7 @@
   .switch:checked::after { transform: translateX(18px); background: #15171c; }
   .switch:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
-  #startBtn {
+  #startBtn, #openFavBtn {
     width: 100%;
     margin-top: 12px;
     padding: 11px 12px;
@@ -133,6 +133,17 @@
     <button id="startBtn">Verwijder verlopen favorieten</button>
     <div id="status"></div>
     <ul id="resultList"></ul>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <div>
+        <div class="title">Mijn favorieten</div>
+        <div class="desc" id="favCount">Bekijk en doorzoek je favorieten</div>
+      </div>
+    </div>
+    <button id="openFavBtn" class="btn">Open favorietenlijst</button>
   </div>
 
   <script src="popup.js"></script>
