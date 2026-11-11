@@ -1,6 +1,8 @@
+/* Donkergrijs: wit wordt ongeveer #121212 en zwarte tekst ongeveer #ededed,
+   in plaats van puur zwart met puur wit (rustiger bij langer lezen). */
 html.mp-dark {
   background: #fff;
-  filter: invert(1) hue-rotate(180deg);
+  filter: invert(0.93) hue-rotate(180deg);
 }
 
 /* Media niet mee inverteren, zodat foto's er normaal uitzien */
