@@ -70,8 +70,8 @@
   }
   .card:hover { border-color: #e8873f; }
   .card.expired { opacity: .65; border-style: dashed; }
-  .thumb { aspect-ratio: 16 / 10; background: #262626; position: relative; }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb { aspect-ratio: 16 / 10; background: #262626; position: relative; overflow: hidden; flex: none; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .badge {
     position: absolute; top: 8px; left: 8px; background: #121212; color: #e8873f;
     font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; border: 1px solid #e8873f;
@@ -79,8 +79,8 @@
   .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 3px; }
   .price { font-weight: 600; font-size: 16px; color: #e8873f; }
   .title {
-    font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; overflow: hidden;
+    font-size: 13px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden; min-height: 2.7em;
   }
   .empty { text-align: center; color: #a0a0a0; padding: 60px 0; line-height: 1.6; }
 </style>
