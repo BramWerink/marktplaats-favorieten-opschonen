@@ -2,55 +2,150 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8" />
-<title>Verlopen favorieten</title>
+<title>Marktplaats Tweaks</title>
 <style>
+  * { box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    width: 300px;
-    padding: 16px;
+    width: 340px;
     margin: 0;
-    color: #1a1a1a;
+    padding: 20px;
+    background: #15171c;
+    color: #f2f3f5;
   }
-  h1 {
-    font-size: 15px;
-    margin: 0 0 12px;
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
   }
-  button {
+  .logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #ff7a1a;
+    color: #15171c;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 { margin: 0; font-size: 18px; font-weight: 700; }
+  .card {
+    background: #1f222a;
+    border: 1px solid #2c303a;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+  .card:last-of-type { margin-bottom: 0; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .row svg { flex: none; }
+  .grow { flex-grow: 1; }
+  .title { font-size: 14px; font-weight: 600; }
+  .desc { font-size: 12px; color: #a8adb8; margin-top: 2px; }
+
+  /* Schakelaar (echte checkbox, zodat toetsenbord en schermlezer werken) */
+  .switch {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    width: 46px;
+    height: 28px;
+    margin: 0;
+    border-radius: 14px;
+    background: #3a3f4b;
+    position: relative;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    background: #f2f3f5;
+    transition: transform .15s, background .15s;
+  }
+  .switch:checked { background: #ff7a1a; }
+  .switch:checked::after { transform: translateX(18px); background: #15171c; }
+  .switch:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  #startBtn, #openFavBtn {
     width: 100%;
-    padding: 10px 12px;
+    margin-top: 12px;
+    padding: 11px 12px;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    background: #ff6600;
-    color: #fff;
+    background: #ff7a1a;
+    color: #15171c;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
   }
-  button:disabled {
-    background: #ccc;
-    cursor: default;
-  }
+  #startBtn:disabled { background: #3a3f4b; color: #a8adb8; cursor: default; }
   #status {
     margin-top: 10px;
     font-size: 13px;
-    color: #444;
+    color: #a8adb8;
     min-height: 16px;
   }
+  #status:empty { display: none; }
   #resultList {
     margin: 8px 0 0;
     padding-left: 18px;
     font-size: 12px;
-    color: #555;
+    color: #a8adb8;
     max-height: 160px;
     overflow-y: auto;
   }
+  #resultList:empty { display: none; }
 </style>
 </head>
 <body>
-  <h1>Marktplaats favorieten</h1>
-  <button id="startBtn">Verwijder verlopen favorieten</button>
-  <div id="status"></div>
-  <ul id="resultList"></ul>
+  <div class="header">
+    <div class="logo" aria-hidden="true">M</div>
+    <h1>Marktplaats Tweaks</h1>
+  </div>
+
+  <div class="card">
+    <label class="row">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <span class="grow">
+        <div class="title">Darkmode</div>
+        <div class="desc">Donker thema op marktplaats.nl</div>
+      </span>
+      <input type="checkbox" role="switch" class="switch" id="darkToggle" aria-label="Darkmode" />
+    </label>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2m-9 0 1 14h8l1-14M10 11v6M14 11v6"/></svg>
+      <div>
+        <div class="title">Verlopen favorieten</div>
+        <div class="desc">Verwijder verlopen advertenties uit je favorieten</div>
+      </div>
+    </div>
+    <button id="startBtn">Verwijder verlopen favorieten</button>
+    <div id="status"></div>
+    <ul id="resultList"></ul>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <div>
+        <div class="title">Mijn favorieten</div>
+        <div class="desc" id="favCount">Bekijk en doorzoek je favorieten</div>
+      </div>
+    </div>
+    <button id="openFavBtn" class="btn">Open favorietenlijst</button>
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>
